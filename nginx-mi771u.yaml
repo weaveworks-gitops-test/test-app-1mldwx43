@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-mi771u
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-mi771u
+  namespace: my-nginx-mi771u
+  labels:
+    name: nginx-mi771u
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-mi771u
+  template:
+    metadata:
+      namespace: my-nginx-mi771u
+      labels:
+        name: nginx-mi771u
+    spec:
+      containers:
+      - name: nginx-mi771u
+        image: nginx
+        ports:
+        - containerPort: 80
+
